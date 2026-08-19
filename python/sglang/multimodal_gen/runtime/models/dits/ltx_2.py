@@ -333,10 +333,11 @@ def apply_split_rotary_emb(
         and x.dtype == torch.bfloat16
         and cos.dtype == torch.bfloat16
         and sin.dtype == torch.bfloat16
-        and x.is_cuda
+        and _is_npu
+        and x.device.type == "npu"
         and x.is_contiguous()
-        and cos.is_cuda
-        and sin.is_cuda
+        and cos.device == x.device
+        and sin.device == x.device
     ):
         from sglang.kernels.ops.diffusion.triton.ltx2_rotary_selector import (
             apply_ltx2_split_rotary_emb,
