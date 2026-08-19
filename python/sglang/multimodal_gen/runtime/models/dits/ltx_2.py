@@ -338,7 +338,7 @@ def apply_split_rotary_emb(
         and cos.is_cuda
         and sin.is_cuda
     ):
-        from sglang.kernels.ops.diffusion.triton.ltx2_rotary import (
+        from sglang.kernels.ops.diffusion.triton.ltx2_rotary_selector import (
             apply_ltx2_split_rotary_emb,
         )
 
